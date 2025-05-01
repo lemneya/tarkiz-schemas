@@ -1,0 +1,22 @@
+message/schema_v1.json
+{
+  "$id": "https://tarkiz.dev/schemas/message_v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Tarkiz Message",
+  "type": "object",
+  "required": ["from", "intent", "payload"],
+  "properties": {
+    "from":   { "enum": ["You", "Agent", "GPT"] },
+    "intent": { "enum": ["IDEATE","DECIDE","BUILD","REFINE","REPORT"] },
+    "payload": {},
+    "context_id": { "type": "string" },
+    "meta": {
+      "type": "object",
+      "properties": {
+        "deadline":  { "type": "string", "format": "date-time" },
+        "priority":  { "enum": ["P1","P2","P3"] },
+        "confidence":{ "type": "number", "minimum": 0, "maximum": 1 }
+      }
+    }
+  }
+}
